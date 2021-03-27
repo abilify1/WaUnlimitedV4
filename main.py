@@ -1,5 +1,7 @@
 #-*-coding:utf-8-*-
-import requests, sys, time, random, json, os
+try:
+ import requests, sys, time, random, json, os
+except:os.system('pip2 install requests')
 from multiprocessing.pool import ThreadPool
 try:
  config = open(".config.json","r").read()
