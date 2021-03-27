@@ -2,12 +2,12 @@
 import requests, sys, time, random, json, os
 from multiprocessing.pool import ThreadPool
 try:
- config = open("config.json","r").read()
+ config = open(".config.json","r").read()
  if config == "":
-  os.system("rm config.json")
-  os.system('echo "{}" > config.json')
+  os.system("rm .config.json")
+  os.system('echo "{}" > .config.json')
  else:pass
-except:os.system('echo "{}" > config.json')
+except:os.system('echo "{}" > .config.json')
 
 qu = '\033[0;36m' #aqua
 hi = '\033[0;32m' #hijau
@@ -65,10 +65,10 @@ def modesatu():
   except:print("%s[%s!%s] %sItu bukan nomor, blokk!!"%(pu,me,pu,me))
   else:break
  pw = str(random.randint(0,10000000))
- hhh = json.loads(open("config.json","rb").read())
+ hhh = json.loads(open(".config.json","rb").read())
  try:
   hhh[nomor]
- except: hhh[nomor] = pw;open("config.json","wb").write(json.dumps(hhh))
+ except: hhh[nomor] = pw;open(".config.json","wb").write(json.dumps(hhh))
  else:pw=hhh[nomor]
  sil = 0
  gal = 0
