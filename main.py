@@ -1,4 +1,5 @@
 #-*-coding:utf-8-*-
+#Recode ? Sertakan kredit dan follow tentunya
 import os
 try:
  import requests, sys, time, random, json, os, inquirer
