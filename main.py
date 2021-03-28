@@ -1,4 +1,5 @@
 #-*-coding:utf-8-*-
+import os
 try:
  import requests, sys, time, random, json, os, inquirer
 except:os.system('pip2 install requests inquirer')
