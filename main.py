@@ -3,6 +3,7 @@ import os
 try:
  import requests, sys, time, random, json, os, inquirer
 except:os.system('pip2 install requests inquirer')
+import requests, sys, time, random, json, os, inquirer
 from multiprocessing.pool import ThreadPool
 try:
  config = open(".config.json","r").read()
